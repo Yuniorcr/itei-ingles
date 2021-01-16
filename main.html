@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link href="css/footer.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link href="css/main-style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+  <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid" >
+          <a href="main.html"><img class="header__img" src="./images/website.png"  alt="logo" style="height: 100px"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a  class="nav-link" href="main.html"><img style="margin-right: 10px;" src="images/home.ico">Inicio</a>
+                  </li>
+              </ul>
+            </ul>
+            <div>
+              <li class="nav-item dropdown" style="border-left: 100px; list-style:none;">
+                      <img src="images/default.png" class="rounded-circle img-fluid " id="imgbar" alt="user-img" style="margin-right: 100px;height: 50px;">
+                      <a  style="color: #9A9D90;"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Perfil</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="userinf.html">cuenta</a>
+                        <a class="dropdown-item" onclick="cerrarsession()">Cerrar sesion</a>
+                      </div>
+              </li>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="row justify content-center">
+          <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <div class="inner rounded">
+                <img class="card-img-top" src="img/level.gif" alt="Card image cap">
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">Nivel Basico</h5>
+                <p class="card-text">El nivel A1 corresponde al primer nivel usuarios básicos con el idioma, es decir, aquellos capaces de comunicarse en situaciones cotidianas con expresiones de uso frecuente y utilizando vocabulario elemental.</p>
+                <a href="nivel.html?niv=1" class="btn btn-success">Aprender</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <div class="inner">
+                <img class="card-img-top" src="img/level.gif" alt="Card image cap">
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">Nivel Intermedio</h5>
+                <p class="card-text"> El nivel B1 consiste en ser capaz de mantener conversaciones fluidas sobre temas conocidos, además de producir textos breves de formatos cotidianos y comprender textos narrativos de longitud media.</p>
+                <a href="nivel.html?niv=2" class="btn btn-success">Aprender</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <div class="inner">
+                <img class="card-img-top" src="img/level.gif" alt="Card image cap">
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">Nivel avanzado</h5>
+                <p class="card-text"> El nivel C1 pretende que el estudiante participe y genere situaciones reales cotidianas en inglés para llevarlos a la práctica como nativo hablante (producción oral).</p>
+                <br>
+                <a href="nivel.html?niv=3" class="btn btn-success">Aprender</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <footer class="footer" >
+      <a class="nav-link" href="#">Terminos de uso</a>
+      <a class="nav-link" href="#">Declaracion de privacidad</a>
+      <a class="nav-link" href="#">Centro de ayuda</a>
+    </footer>
+    <div class="container" id="container">
+        <h1>welcome ${user.displayName}</h1>
+        <button onclick="cerrarsession()" class="btn">cerrar session</button>
+    </div>
+    <div class="container">
+        <input type="text" id="nombres" class="form-control my-3" placeholder="name">
+        <input type="text" id="apellidos"  class="form-control my-3" placeholder="second name">
+        <input type="date" id="fechas" class="form-control my-3" placeholder="date">
+        <button type="button" class="btn btn-success" onclick="save()" id="boton">save</button><br>
+        <div id="msm">
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">email</th>
+                <th scope="col">nombre</th>
+                <th scope="col">apellido</th>
+                <th scope="col">fecha</th>
+              </tr>
+            </thead>
+            <tbody id="table">
+            </tbody>
+            
+          </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="js/main2.js"></script>
+</body>
+</html>
+
+

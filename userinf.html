@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/footer.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link href="css/main-style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+	
+</head>
+<body>
+	<header class="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  <div class="container-fluid" >
+			<a href="main.html"><img class="header__img" src="./images/website.png"  alt="logo" style="height: 100px"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" >
+			  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+					<a  class="nav-link" href="main.html"><img style="margin-right: 10px;" src="images/home.ico">Inicio</a>
+				  </li>
+				</ul>
+			  </ul>
+			  <div>
+				<li class="nav-item dropdown" style="border-left: 100px; list-style:none;">
+						<img src="images/default.png" id="imagebar" class="rounded-circle img-fluid " alt="user-img" style="margin-right: 100px;height: 50px;">
+						<a  style="color: #9A9D90;"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Perfil</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						  <a class="dropdown-item" href="userinf.html">cuenta</a>
+						  <a class="dropdown-item" onclick="cerrarsession()">Cerrar sesion</a>
+						</div>
+				</li>
+			  </div>
+			</div>
+		  </div>
+		</nav>
+	  </header>
+	<div class="container">
+		<div class="img">
+			<img src="images/default.png" id="perfilimg" alt="user_perfil" class="rounded-circle rounded mx-auto d-block" style="background: black; max-height: 250px; min-height: 100px;">
+			<div class="d-grid gap-1 col-1 mx-auto my-3">
+				<button type="button" class="btn btn-outline-info" target="#image"><svg height="16" width="16" class="octicon octicon-pencil" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg>
+					Edit
+				</button>
+			  </div>
+			
+				
+		</div>
+		<hr>
+		<form>
+			<div class="mb-3" >
+				<label for="formFile" class="form-label">foto</label>
+				<input class="form-control" type="file" accept="image/png,jpg,jpeg" id="image">
+			  </div>
+		  <fieldset disabled>
+		    <div class="form-group" id="namew">
+			  
+		    </div>
+		    <div class="form-group my-3" id="emailw">
+		      
+		    </div>
+		  </fieldset>
+		  <div class="d-grid gap-2 col-2 mx-auto">
+			<button class="btn btn-primary" type="button" onclick="uploadImageUser()">Actualizar</button>
+		  </div>
+		</form>
+		<div id="container"></div>
+	</div>
+	<footer class="footer" style="background: #343A40; border-bottom: 0px">
+    <a class="nav-link" href="#">Terminos de uso</a>
+    <a class="nav-link" href="#">Declaracion de privacidad</a>
+    <a class="nav-link" href="#">Centro de ayuda</a>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="js/userinfo.js"></script>
+</body>
+</html>

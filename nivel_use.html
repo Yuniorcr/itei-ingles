@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nivel</title>
+    <link href="css/footer.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link href="css/main-style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+    <script src="https://kit.fontawesome.com/26c3526be2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- E:\programs\xampp\apache\bin\curl-ca-bundle.crt -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid" >
+            <a href="main.html"><img class="header__img" src="./images/website.png"  alt="logo" style="height: 100px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a  class="nav-link" href="main.html"><img style="margin-right: 10px;" src="images/home.ico">Inicio</a>
+                    </li>
+                </ul>
+              </ul>
+              <div>
+                <li class="nav-item dropdown" style="border-left: 100px; list-style:none;">
+                        <img src="images/default.png" class="rounded-circle img-fluid " id="imgbar" alt="user-img" style="margin-right: 100px;height: 50px;">
+                        <a  style="color: #9A9D90;"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Perfil</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="userinf.html">cuenta</a>
+                          <a class="dropdown-item" onclick="cerrarsession()">Cerrar sesion</a>
+                        </div>
+                </li>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div class="container my-5">
+        <div>
+          <button type="button" class="btn-close  my-3" aria-label="Close" onclick="cerrarWindow()"></button>	
+          <label >cerrar</label>
+        </div>
+        <div class="progress">
+          <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1" class="my-3">Escribe esto en ingles</label>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" id="hablar" class="btn btn-success"><i class="fas fa-volume-up"></i></button>
+            <input type="text" id="texto" class="form-control " value="hi how are you" placeholder="" name="titulo" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" class="my-3">Escribir: </label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="content"></textarea>
+        </div>
+        <div class="d-grid gap-2 col-2 mx-auto my-5">
+          <button class="btn btn-success" type="button" onclick="">Comprobar</button>
+        </div>
+    </div>
+
+      <footer class="footer" >
+        <a class="nav-link" href="#">Terminos de uso</a>
+        <a class="nav-link" href="#">Declaracion de privacidad</a>
+        <a class="nav-link" href="#">Centro de ayuda</a>
+      </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="js/niveluse.js"></script>
+</html>
