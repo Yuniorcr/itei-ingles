@@ -65,14 +65,18 @@ var prodId = parseInt(getParameterByName('niv'))
 if (prodId == 1 || prodId == 2 || prodId ==3) {
   // leer documentos
   var card = document.getElementById('card')
-  db.collection("palabras").where("nivel", "==", prodId).onSnapshot((querySnapshot) => {
+  db.collection("niveles").where("nivel", "==", prodId).onSnapshot((querySnapshot) => {
     card.innerHTML = ''
     querySnapshot.forEach((doc) => {
       card.innerHTML += `
-      <img class="card-img-top" src="${doc.data().foto}" alt="Card image cap">
-      <div class="card-body text-center">
-        <h5 class="card-title">${doc.data().grupo}</h5>
-        <a href="nivel_use.html?group=${doc.data().grupo}&niv=${prodId}" type="submit" class="btn btn-success">Aprender</a>
+      <div  class="col-md-4 ">
+        <div class="card" style="width: 18rem;" id="card">
+          <img class="card-img-top" src="${doc.data().foto}" alt="Card image cap">
+          <div class="card-body text-center">
+            <h5 class="card-title">${doc.data().grupo}</h5>
+            <a href="nivel_use.html?group=${doc.data().grupo}&niv=${prodId}&id=1" type="submit" class="btn btn-success">Aprender</a>
+          </div>
+        </div>
       </div>
         `
     });

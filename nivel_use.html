@@ -58,23 +58,44 @@
           <button type="button" class="btn-close  my-3" aria-label="Close" onclick="cerrarWindow()"></button>	
           <label >cerrar</label>
         </div>
-        <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress" id="progress">
+          
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlInput1" class="my-3">Escribe esto en ingles</label>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" id="hablar" class="btn btn-success"><i class="fas fa-volume-up"></i></button>
-            <input type="text" id="texto" class="form-control " value="hi how are you" placeholder="" name="titulo" readonly>
+        <div  id="principal">
+          <div class="form-group">
+            <label for="exampleFormControlInput1" class="my-3">Escribe esto en ingles</label>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="button" id="hablar" class="btn btn-success "><i class="fas fa-volume-up"></i></button>
+              <input type="text" id="texto" class="form-control " value="hi how are you"   name="" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="exampleFormControlTextarea1" class="my-3">Escribir: </label>
+              <div class=" my-5">
+      
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="tareasCompletadas" >
+                </div>
+                
+                <hr>
+                <div  id="h1" >
+                  
+                </div>
+                
+              </div>
+          </div>
+          <div class="d-grid gap-2 col-2 mx-auto my-5" id="togle2">
+            <button class="btn btn-success" type="button" id="toggle">Comprobar</button>
+          </div>
+  
+          <div class="row mt-5" id="siguiente">
+            <div class=" my-5">
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="tareas" >
+              </div><hr>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1" class="my-3">Escribir: </label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="content"></textarea>
-        </div>
-        <div class="d-grid gap-2 col-2 mx-auto my-5">
-          <button class="btn btn-success" type="button" onclick="">Comprobar</button>
-        </div>
+
+
     </div>
 
       <footer class="footer" >
@@ -86,5 +107,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="js/Sortable.min.js"></script>
 <script src="js/niveluse.js"></script>
 </html>
