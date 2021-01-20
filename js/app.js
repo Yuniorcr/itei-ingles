@@ -46,6 +46,7 @@ function validar() {
     var password2 = document.getElementById('pass').value;
     firebase.auth().signInWithEmailAndPassword(email2, password2)
     .then((user) => {
+      imprimir(user)
     })
     .catch((error) => {
         var errorCode = error.code;
@@ -62,8 +63,7 @@ function validar() {
 function observador(){
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          console.log('existe')
-            imprimir(user)
+          location.href = "main.html"
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           var uid = user.uid;
@@ -114,11 +114,13 @@ function cerrarsession() {
 function SignGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
+      
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
         console.log('success')
         var user = result.user;
+        location.href = "main.html"
         // ...
       }).catch(function(error) {
         // Handle Errors here.
@@ -134,13 +136,23 @@ function SignGoogle() {
 
 function SignFacebook() {
   var provider = new firebase.auth.FacebookAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var token = result.credential.accessToken;
+  firebase
+  .auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    
+    var credential = result.credential;
+
     // The signed-in user info.
     var user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var accessToken = credential.accessToken;
+    location.href = "main.html"
     // ...
-  }).catch(function(error) {
+  })
+  .catch((error) => {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -148,6 +160,10 @@ function SignFacebook() {
     var email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
+    console.log(errorCode)
+    console.log(errorMessage)
+    console.log(email)
+    console.log(credential)
     // ...
   });
 }
