@@ -36,12 +36,10 @@ observador()
 function imprimir(user) {
     var user = user
     var content = document.getElementById('container')
-    if (user.emailVerified) {
         mostrarUser() 
         content.innerHTML = `
         <h1>welcome ${user.displayName}</h1>
         <button onclick="cerrarsession()">cerrar session</button>`
-    }
 }
 function userinfo() {
     location.href= "userinf.html"
@@ -151,8 +149,9 @@ function editar(id, nombre, apellido, fecha) {
 function mostrarUser() {
     var user = firebase.auth().currentUser;
     var name, email, photoUrl, uid, emailVerified;
+    console.log(user)
     if (user != null) {
-      
+      console.log(user)
       name = user.displayName;
       email = user.email;
       photoUrl = user.photoURL;

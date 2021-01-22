@@ -38,11 +38,7 @@ observador()
 
 function imprimir(user) {
   var user = user
-  if (user.emailVerified) {
        mostrarUser()
-  }else{
-    console.log('errpr')
-  }
 }
 
 function cerrarsession() {

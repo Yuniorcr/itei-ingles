@@ -35,10 +35,8 @@ observador()
 
 function imprimir(user) {
   var user = user
-  var content = document.getElementById('container')
-  if (user.emailVerified) {
-      mostrarUser() 
-  }
+  // var content = document.getElementBsyId('container')
+  mostrarUser() 
 }
 function userinfo() {
   location.href= "userinf.html"
