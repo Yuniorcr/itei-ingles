@@ -146,7 +146,7 @@ function SignFacebook() {
 
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var accessToken = credential.accessToken;
-
+    location.href = "main.html"
     // ...
   })
   .catch((error) => {
