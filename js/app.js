@@ -46,7 +46,6 @@ function validar() {
     var password2 = document.getElementById('pass').value;
     firebase.auth().signInWithEmailAndPassword(email2, password2)
     .then((user) => {
-      imprimir(user)
     })
     .catch((error) => {
         var errorCode = error.code;
@@ -63,7 +62,8 @@ function validar() {
 function observador(){
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          location.href = "main.html"
+          console.log('existe')
+          imprimir(user)
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           var uid = user.uid;
@@ -114,13 +114,11 @@ function cerrarsession() {
 function SignGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
-      
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
         console.log('success')
         var user = result.user;
-        location.href = "main.html"
         // ...
       }).catch(function(error) {
         // Handle Errors here.
@@ -141,7 +139,6 @@ function SignFacebook() {
   .signInWithPopup(provider)
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
-    
     var credential = result.credential;
 
     // The signed-in user info.
@@ -149,7 +146,7 @@ function SignFacebook() {
 
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var accessToken = credential.accessToken;
-    location.href = "main.html"
+
     // ...
   })
   .catch((error) => {
@@ -194,5 +191,36 @@ function recuperar() {
       document.getElementById('emailre').value = ''
   }).catch(function(error) {
     // An error happened.
+  });
+}
+
+function signTwitter() {
+  var provider = new firebase.auth.TwitterAuthProvider();
+  firebase
+  .auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+    // You can use these server side with your app's credentials to access the Twitter API.
+    var token = credential.accessToken;
+    var secret = credential.secret;
+    console.log(token)
+    // The signed-in user info.
+    var user = result.user;
+
+    location.href = "main.html"
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
   });
 }
