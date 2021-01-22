@@ -24,7 +24,7 @@ function observador(){
           // ...
         } else {
             console.log('no existe')
-            location.href="index.html"
+            location.href="/"
           // User is signed out
           // ...
         }
@@ -46,7 +46,7 @@ function userinfo() {
 }
 function cerrarsession() {
     firebase.auth().signOut().then(function() {
-        location.href = "index.html"
+        location.href = "/"
       }).catch(function(error) {
         console.log(error)
       });

@@ -46,6 +46,8 @@ function validar() {
     var password2 = document.getElementById('pass').value;
     firebase.auth().signInWithEmailAndPassword(email2, password2)
     .then((user) => {
+      console.log(user)
+      imprimir(user)
     })
     .catch((error) => {
         var errorCode = error.code;
@@ -62,8 +64,6 @@ function validar() {
 function observador(){
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          console.log('existe')
-          imprimir(user)
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           var uid = user.uid;
@@ -105,7 +105,7 @@ function verificarUser() {
 }
 function cerrarsession() {
     firebase.auth().signOut().then(function() {
-        location.href="index.html"
+        location.href="/"
       }).catch(function(error) {
         console.log(error)
       });
@@ -119,6 +119,7 @@ function SignGoogle() {
         // The signed-in user info.
         console.log('success')
         var user = result.user;
+        location.href = "main.html"
         // ...
       }).catch(function(error) {
         // Handle Errors here.
@@ -128,6 +129,10 @@ function SignGoogle() {
         var email = error.email;
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
+        var content1 = document.getElementById('error1')
+        content1.innerHTML = `
+            <div class="alert alert-danger" role="alert"><br>${errorMessage}<br>${email}
+            </div>`
         // ...
       });
 }
@@ -157,10 +162,10 @@ function SignFacebook() {
     var email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
-    console.log(errorCode)
-    console.log(errorMessage)
-    console.log(email)
-    console.log(credential)
+    var content1 = document.getElementById('error1')
+        content1.innerHTML = `
+            <div class="alert alert-danger" role="alert">${errorMessage}<br>${email}
+            </div>`
     // ...
   });
 }
@@ -221,10 +226,11 @@ function signTwitter() {
     var email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
-    console.log(errorCode)
-    console.log(errorMessage)
-    console.log(email)
-    console.log(credential)
+    var content1 = document.getElementById('error1')
+        content1.innerHTML = `
+            <div class="alert alert-danger" role="alert">
+            ${errorMessage}<br>${email}
+            </div>`
 
     // ...
   });

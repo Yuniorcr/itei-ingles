@@ -24,7 +24,7 @@ var firebaseConfig = {
 		  // ...
 		} else {
 			console.log('no existe')
-			location.href="index.html"
+			location.href="/"
 		  // User is signed out
 		  // ...
 		}
@@ -36,16 +36,14 @@ var firebaseConfig = {
   function imprimir(user) {
 	var user = user
 	var content = document.getElementById('container')
-	if (user.emailVerified) {
-		mostrarUser() 
-	}
+	mostrarUser() 
   }
   function userinfo() {
 	location.href= "userinf.html"
   }
   function cerrarsession() {
 	firebase.auth().signOut().then(function() {
-		location.href = "index.html"
+		location.href = "/"
 	  }).catch(function(error) {
 		console.log(error)
 	  });
