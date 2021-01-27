@@ -202,7 +202,7 @@ const listaTareasCompletadas = Sortable.create(tareasCompletadas, {
 				btnToggle.addEventListener('click', () => {
 					if (str1 === str2) {
 						result.innerHTML =`<div class="alert alert-success" role="alert">
-						Correcto, Genial!!
+						Correcto, Genial!! 🎉🎉
 						</div>`
 						siguiente.innerHTML=""
 						siguiente.innerHTML=`<div class="d-grid gap-2 col-6 mx-auto">
@@ -211,7 +211,7 @@ const listaTareasCompletadas = Sortable.create(tareasCompletadas, {
 					  btnToggle2.innerHTML =""
 					}else{
 						result.innerHTML =`<div class="alert alert-danger" role="alert">
-						Verifica tu respuesta
+						Sigue Intentando 😉😉
 						</div>`
 					}
 				});
@@ -262,7 +262,6 @@ var image = document.querySelector('#texto')
 db.collection("palabras").where("nivel", "==", nivel).where("grupo", "==", grupo).where("id", "==", id).limit(1).onSnapshot((querySnapshot) => {
 	image.value =""
     querySnapshot.forEach((doc) => {
-		console.log(doc.data().type)
 		if (doc.data().type == "complete") {
 			image.value = doc.data().palEn
 			mostrarpalabras(doc.data().palEs)
@@ -305,8 +304,64 @@ db.collection("palabras").where("nivel", "==", nivel).where("grupo", "==", grupo
 						</div>`
 				}
 			})
-		}else if(doc.data().type == ""){
+		}else if(doc.data().type == "hablar"){
 			
+			var principal = document.getElementById("principal")
+			principal.innerHTML=""
+			principal.innerHTML=`<br>
+			<p class="text-center">Pruebe su habla del Idioma</p>
+			<div class="shadow p-3 mb-5 bg-white rounded"> <p class="text-center">Diga: <h1 class="text-center">${doc.data().palEn}</h1></p></div>
+			<div class="mb-3 d-grid gap-4 col-1  mx-auto my-5">
+				<button type="button" class="btn btn-success" id="start"><img src="images/micro.png" alt="" style="max-height: 50px;"></button>
+				
+			</div>
+			<p class="text-center">Presione y empiece a hablar</p>
+			<input type="text" class="form-control" id="mostrar" value="Aparecera aqui lo que usted hable" readonly>
+			<div id="content">
+            	
+			</div>
+			<div class="d-grid col-2 mx-auto my-5" id="btns" >
+            	<button class="btn btn-success" type="button" id="toggle">Comprobar</button>
+			</div>`
+			
+			const btnToggle = document.getElementById('toggle');  
+			const result = document.getElementById('content');
+			const siguiente = document.getElementById('btns')
+			const start = document.getElementById('start')
+			const texto = document.getElementById('mostrar')
+
+			let recognition = new webkitSpeechRecognition()
+			recognition.lang = 'en-En'
+			recognition.continuous = false
+			recognition.interimResults = false
+
+			recognition.onresult = (event) => {
+			const results = event.results
+			const frase = results[results.length-1][0].transcript
+			texto.value += frase
+
+			}
+			start.addEventListener('click', ()=>{
+				texto.value=''
+				recognition.start()
+			})
+			btnToggle.addEventListener('click', () => {
+			const textinput = document.getElementById('mostrar').value
+				if ( textinput.trim().toLowerCase()=== doc.data().palEn.toLowerCase()) {
+					console.log('cprr')
+					result.innerHTML =`<div class="alert alert-success my-3" role="alert">
+						Correcto, Genial!! 🎉🎉
+						</div>`
+					siguiente.innerHTML=""
+					siguiente.innerHTML=`<div class="d-grid gap-2 col-6 mx-auto">
+						<a class="btn btn-success" href="nivel_use.html?group=${grupo}&niv=${nivel}&id=${id+1}">Siguiente</a>
+					  </div>`
+				}else{
+					result.innerHTML =`<div class="alert alert-danger my-3" role="alert">
+						Sigue Intentando 😉😉
+						</div>`
+				}
+			})
 		}else if(doc.data().type == ""){
 			
 		}
@@ -357,3 +412,10 @@ if (id <1 || id >11) {
   <button class="btn btn-success" onclick="cerrarWindow()" type="button">Aprender Mas...</button>
 </div>`
 }
+
+
+
+
+// stops.addEventListener('click', ()=>{
+//   recognition.abort()
+// })

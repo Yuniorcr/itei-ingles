@@ -46,8 +46,7 @@ function validar() {
     var password2 = document.getElementById('pass').value;
     firebase.auth().signInWithEmailAndPassword(email2, password2)
     .then((user) => {
-      console.log(user)
-      imprimir(user)
+      observador()
     })
     .catch((error) => {
         var errorCode = error.code;
@@ -64,6 +63,7 @@ function validar() {
 function observador(){
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
+          imprimir(user)
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           var uid = user.uid;
@@ -75,20 +75,20 @@ function observador(){
       });
 }
 
-observador()
+
 
 function imprimir(user) {
     var user = user
-    if (user.emailVerified) {
+    if (user.emailVerified == true) {
         location.href = "main.html"
     }else{
         
         var content1 = document.getElementById('error1')
         content1.innerHTML = `
             <div class="alert alert-danger" role="alert">
-            verifique su Email
+            verifique su Email${user.emailVerified}
             </div>`
-        setTimeout(cerrarsession, 3000)
+        // setTimeout(cerrarsession, 3000)
     }
 }
 
@@ -235,3 +235,4 @@ function signTwitter() {
     // ...
   });
 }
+
